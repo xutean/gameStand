@@ -1,0 +1,19 @@
+<!-- income.html (gameStand project) -->
+{% extends "base.html" %}
+{% block title %}填報收入{% endblock %}
+{% block content %}
+<div class='container'>
+{% for message in messages %}
+    <div class='alert alert-{{message.tags}}'>{{ message }}</div>
+{% endfor %}
+
+<form name='my form' action='.' method='POST'>
+    {% csrf_token %}
+    <table>
+    {{ income_form.as_table }}
+    </table>
+    <input type='submit' value='上傳'>
+    <input type='reset' value='清除重填'>
+</form>
+</div>
+{% endblock %}

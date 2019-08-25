@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block javascript %}
+  <script src="{% static 'books/js/books.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <h1 class="page-header">機台收入</h1>
+
+  <p>
+    <button type="button" class="btn btn-primary js-create-book" data-url="{% url 'income_create' %}">
+      <span class="glyphicon glyphicon-plus"></span>
+      新 增
+    </button>
+  </p>
+
+  <table class="table" id="book-table">
+    <thead>
+      <tr>
+        <th>機台代碼</th>
+        <th>日　期</th>
+        <th>處理人員</th>
+        <th>金　額</th>
+        <th>備註說明</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% include 'books/includes/partial_book_list.html' %}
+    </tbody>
+  </table>
+
+  <div class="modal fade" id="modal-book">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+      </div>
+    </div>
+  </div>
+{% endblock %}
