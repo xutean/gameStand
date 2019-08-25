@@ -1,0 +1,1 @@
+web: gunicorn gameStand.wsgi –log-file -

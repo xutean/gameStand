@@ -84,15 +84,30 @@ WSGI_APPLICATION = 'gameStand.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',       # MySQL database engine class.
+#         'HOST': '127.0.0.1',        # MySQL database host ip.
+#         'PORT': '3306',             # port number.
+#         'NAME': 'gameStand',           # database name.
+#         'USER': 'xutean',           # user name.
+#         'PASSWORD': '0229202992',   # password
+#         'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",},
+#     }
+# }
+
+#  ———————————————— 
+# 版权声明：本文为CSDN博主「buxianghejiu」的原创文章，遵循CC 4.0 by-sa版权协议，转载请附上原文出处链接及本声明。
+# 原文链接：https://blog.csdn.net/buxianghejiu/article/details/79011126
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',       # MySQL database engine class.
-        'HOST': '127.0.0.1',        # MySQL database host ip.
-        'PORT': '3306',             # port number.
-        'NAME': 'gameStand',           # database name.
-        'USER': 'xutean',           # user name.
-        'PASSWORD': '0229202992',   # password
-        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",},
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'gameStand',  # 数据库名字(需要先创建)
+        'USER': 'xutean',  # 登录用户名
+        'PASSWORD': '0229202992',  # 密码
+        'HOST': '',  # 数据库IP地址,留空默认为localhost
+        'PORT': '5432',  # 端口
     }
 }
 
