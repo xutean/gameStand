@@ -15,5 +15,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers.
 ALLOWED_HOSTS = ['*']
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # Turn off DEBUG mode.
-DEBUG = False
+DEBUG = True
