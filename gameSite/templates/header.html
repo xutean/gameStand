@@ -7,13 +7,16 @@
                 </div>
             </div>
             <ul class='nav navbar-nav'>
-                <li class='active'><a href='/'>Home</a></li>
+                {% comment %} <li class='active'><a href='/'>Home</a></li> {% endcomment %}
+                <li class='active'><a href='/userinfo'>個人資料</a></li>
                     {% if username %}
-                    <li><a href='/userinfo'>個人資料</a></li>
+                    {% comment %} <li><a href='/userinfo'>個人資料</a></li> {% endcomment %}
                     {% comment %} <li><a href='/post'>寫日記</a></li> {% endcomment %}
                     <li><a href='/income'>上傳機台收入</a></li>
                     <li><a href='/income_list'>機台收入列表</a></li>
-                    <li><a href='/contact'>傳送訊息</a></li>
+                    <li><a href='/email'>傳送email</a></li>
+                    <li><a href='/line'>Line訊息</a></li>
+                    <li><a href='/ELK'>上傳ELK</a></li>
                     <li><a href='/logout'>登出</a></li>
                     {% else %}
                     <li><a href='/login'>登入</a></li>

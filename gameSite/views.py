@@ -167,8 +167,8 @@ def income(request):
         
     if request.method == 'POST':
         user = User.objects.get(username=username)
-        income = models.Income(user=user)
-        income_form = forms.IncomeForm(request.POST, instance=diary)
+        income = models.Income(employee=user)
+        income_form = forms.IncomeForm(request.POST)
         if income_form.is_valid():
             messages.add_message(request, messages.INFO, "收入已儲存")
             income_form.save()  
@@ -223,7 +223,9 @@ def save_income_form_4Update(request, form, template_name):
             # income.standID = request.standID
             income.save()
             data['form_is_valid'] = True
-            incomes = models.Income.objects.all()
+            # incomes = models.Income.objects.all()
+            me = models.User.objects.get(username=request.user.username)
+            incomes = models.Income.objects.filter(employee=me.id)
             data['html_book_list'] = render_to_string('books/includes/partial_book_list.html', {
                 'books': incomes
             })
@@ -342,6 +344,96 @@ def contact(request):
     else:
         form = forms.ContactForm()
     return render(request, 'contact.html', locals())
+
+@login_required(login_url='/login/')
+def email(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        useremail = request.user.email
+    messages.get_messages(request)
+    
+    if request.method == 'POST':
+        form = forms.ContactForm(request.POST)
+        if form.is_valid():
+            message = "已傳送，感謝您"
+            user_name = form.cleaned_data['user_name']
+            # user_city = form.cleaned_data['user_city']
+            # user_school = form.cleaned_data['user_school']
+            user_email  = form.cleaned_data['user_email']
+            user_message = form.cleaned_data['user_message']
+            mail_body = u'''
+傳送人員：{}
+反應訊息：如下
+{}'''.format(user_name, user_message)
+            send_mail(
+    '機台訊息反映',
+    mail_body,
+    # 'a6898208@gmail.com',
+    'xutean@gmail.com',
+    [user_email],
+    fail_silently=False,
+)
+            logMessage(username,user_message,user_email,True,False,False)
+            # 透過　Line Notify 傳送訊息
+            # message = mail_body
+            # token = 'TdeotZwuPDqcqIySqV4g8b6L28TqWCsivuCUWsoriTO'
+            # lineNotifyMessage.sendMessage(token, message)
+            # logMessage(username,user_message,user_email,False,True,False)
+            # 透過　Line Notify 傳送訊息
+            # 透過　Line Notify 傳送訊息
+
+        else:
+            message = "請檢查您輸入的資訊是否正確！"
+    else:
+        form = forms.ContactForm()
+    return render(request, 'email.html', locals())
+
+@login_required(login_url='/login/')
+def line(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        useremail = request.user.email
+    messages.get_messages(request)
+    
+    if request.method == 'POST':
+        form = forms.LineForm(request.POST)
+        if form.is_valid():
+            message = "已傳送，感謝您"
+            user_name = form.cleaned_data['user_name']
+            # user_city = form.cleaned_data['user_city']
+            # user_school = form.cleaned_data['user_school']
+            # user_email  = form.cleaned_data['user_email']
+            user_message = form.cleaned_data['user_message']
+#             mail_body = u'''
+# 傳送人員：{}
+# 反應訊息：如下
+# {}'''.format(user_name, user_message)
+#             send_mail(
+#     '機台訊息反映',
+#     mail_body,
+#     # 'a6898208@gmail.com',
+#     'xutean@gmail.com',
+#     [user_email],
+#     fail_silently=False,
+# )
+            # logMessage(username,user_message,user_email,True,False,False)
+            # 透過　Line Notify 傳送訊息
+            message = user_message
+            token = 'TdeotZwuPDqcqIySqV4g8b6L28TqWCsivuCUWsoriTO'
+            lineNotifyMessage.sendMessage(token, message)
+            logMessage(username,user_message,"line at xutean",False,True,False)
+            # 透過　Line Notify 傳送訊息
+            # 透過　Line Notify 傳送訊息
+
+        else:
+            message = "請檢查您輸入的資訊是否正確！"
+    else:
+        form = forms.LineForm()
+    return render(request, 'line.html', locals())
+
+@login_required(login_url='/login/')
+def ELK(request):
+    return HttpResponse("建構中!!!")
 
 def contact＿BAK(request):
     if request.user.is_authenticated:

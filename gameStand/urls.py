@@ -34,8 +34,11 @@ urlpatterns = [
     path('income/<pk>/delete/', views.income_delete, name='income_delete'),
     path('post/', views.posting),
     path('contact/', views.contact),
+    path('email/', views.email),
+    path('line/', views.line),
+    path('ELK/', views.ELK),            
     path('post2db/', views.post2db),
-    path('', RedirectView.as_view(url='/index/', permanent=True)),   #檢視網站-> 'index/'
+    path('', RedirectView.as_view(url='/userinfo/', permanent=True)),   #檢視網站-> 'index/'
     # django-registration
     path('accounts/', include('registration.backends.default.urls')),
 ]

@@ -35,6 +35,10 @@ class Profile(models.Model):
     male = models.BooleanField(default=False)
     website = models.URLField(null=True)
     
+    class Meta:
+        verbose_name = '人員資訊'
+        verbose_name_plural = '人員資訊'
+
     def __str__(self):
         return self.user.username
 
