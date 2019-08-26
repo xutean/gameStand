@@ -21,7 +21,7 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', views.index),
+    path('index/', views.userinfo),  #Heroku 
     path('login/', views.login),
     path('logout/', views.logout),
     path('userinfo/', views.userinfo),
