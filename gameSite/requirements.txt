@@ -2,7 +2,7 @@ astroid==2.2.5
 certifi==2019.6.16
 chardet==3.0.4
 colorama==0.4.1
-Django==2.2.4
+Django==2.2.8
 django-registration-redux==2.6
 django-widget-tweaks==1.4.5
 idna==2.8
